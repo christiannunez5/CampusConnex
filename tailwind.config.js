@@ -14,7 +14,7 @@ export default {
         }
       },
       fontFamily: {
-        primary: ['Nunito', 'sans-serf']
+        primary: 'Roboto'
       }
     },
   },
