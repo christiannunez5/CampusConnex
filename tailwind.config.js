@@ -12,6 +12,9 @@ export default {
           1: "#0e345a",
           2: "#DC3134"
         }
+      },
+      fontFamily: {
+        primary: ['Nunito', 'sans-serf']
       }
     },
   },
