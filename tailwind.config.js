@@ -14,7 +14,14 @@ export default {
         }
       },
       fontFamily: {
-        primary: 'Roboto'
+        primary: ['Kanit', 'sans-serif']
+      },
+      width: {
+        95: "95%"
+      },
+      screens: {
+        'sm': '500px',
+        'md' : '700px'
       }
     },
   },
