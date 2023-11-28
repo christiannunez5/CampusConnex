@@ -10,11 +10,13 @@ export default {
         primary: "#ffffff",
         secondary: {
           1: "#0e345a",
-          2: "#DC3134"
-        }
+          2: "#DC3134",
+          3: '#F2F2F2'
+        },
+        'white-rgba': 'rgba(255, 255, 255, 0.4)',
       },
       fontFamily: {
-        primary: ['Kanit', 'sans-serif']
+        primary: ['Georgia', 'sans-serif']
       },
       width: {
         95: "95%"

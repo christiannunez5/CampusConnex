@@ -8,20 +8,20 @@ import { IoMenu } from "react-icons/io5";
 export const Navbar = () => {
     const [cart, setCart] = useState(0);
     return (
-        <div id="navbar-container" className="w-full bg-primary flex justify-between py-4 items-center m-auto
+        <div id="navbar-container" className="w-95 bg-primary flex justify-between py-4 items-center m-auto
         md:py-8 sm:w-95 md:w-11/12 z-10">
             
             <div id="nav-left" className="">
                 <div id="title-section" className="text-sm flex border-4 border-secondary-1 tracking-wide
                 sm:text-base md:text-xl ">
                     
-                    <div className="bg-secondary-1 text-primary font-normal py-2 px-3
+                    <div className="bg-secondary-1 text-primary font-extrabold px-3 py-1
                       sm:font-bold " >
                         <h1>FLAMINGO.</h1>
                     </div>
 
                     <div className=" text-secondary-1 cursor-pointer hover:bg-secondary-1
-                     hover:text-primary font-light flex items-center justify-center py-2 px-3
+                     hover:text-primary font-light flex items-center justify-center px-3 py-1
                      ">
                         <h1>PUBLISHERS</h1>
                     </div>
