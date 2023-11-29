@@ -56,6 +56,19 @@
     color: black;
 }
 
+#book-item {
+    transition: transform 0.5s ease;
+    width: 90%;
+}
+
+#arrow-right {
+    right: 0;
+    top: 95px;
+    z-index: 50;
+    color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    
+}
 
 
 @media screen and (min-width: 400px){
@@ -72,8 +85,9 @@
 }
 
 @media screen and (min-width: 700px){
-    #book-item {
-    width: calc(100% / 4.429);
+
+    #best-books-wrapper {
+        transform: translateY(-33%);
     }
 
 }
@@ -82,10 +96,6 @@
    
     #best-books-wrapper {
         width: 900px;
-    }
-
-    #book-item {
-        width: calc(100% / 5.52);
     }
 
 

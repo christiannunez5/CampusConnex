@@ -1,8 +1,54 @@
 import {Navbar} from '../../Components/Navbar/Navbar'
 import {Message} from '../../Components/Message/Message'
-import {BestBooksWrapper} from '../../Components/BestBooks/BestBooksWrapper'
-import {BestBookItem} from '../../Components/BestBooks/BestBookItem'
+import {BookItem} from '../../Components/BestBooks/BookItem'
+import {RightArrow} from '../../Components/Arrows/RightArrow'
+
+import { FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft } from "react-icons/fa";
+
+
+import { useEffect, useState } from 'react'
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+
 export const Home = () => {
+    
+    const CustomRightArrow = ({ onClick, ...rest }) => {
+        const {
+          onMove,
+          carouselState: { currentSlide, deviceType }
+        } = rest;
+        // onMove means if dragging or swiping in progress.
+        return <button onClick={() => onClick()} />;
+      };
+
+    const responsive = {
+        desktop: {
+          breakpoint: { max: 3000, min: 1024 },
+          items: 6
+        },
+    
+        tablet: {
+          breakpoint: { max: 1024, min: 700 },
+          items: 3
+        },
+        mobile: {
+          breakpoint: { max: 700, min: 0 },
+          items: 2
+        }
+      };
+    
+
+    const [bestSeller, setBestSeller] = useState([]);
+
+    useEffect(() => {
+        fetch("https://api.itbook.store/1.0/search/bestseller")
+        .then(response => response.json())
+        .then(data => setBestSeller(data.books))
+    },[])
+
+    
     return (
         <div id="home-container" className='font-primary w-full relative z-0 text-secondary-1'>
             <Message></Message>
@@ -30,81 +76,48 @@ export const Home = () => {
                     </div>
                 </div>
 
-                <div id='recommended-books' className='w-full border mt-5 relative bg-secondary-1
+                <div id='recommended-books' className='w-full border mt-5 relative bg-secondary-1 h-96
                 md:mt-36'>
                     
-                    <BestBooksWrapper>
-                       <BestBookItem
-                            bookImg="https://itbook.store/img/books/9780596529185.png"
-                            bookName="Tes1t"
-                            bookPrice="Hello1"
-                       ></BestBookItem>
+                    <div className='w-11/12 m-auto relative border border-cyan-700 px-10
+                    md:-translate-y-28'>
+                        <Carousel 
+                            responsive={responsive}
+                            // arrows={false} 
+                            // customButtonGroup={<ButtonGroup />}
+                            itemClass='margin'
+                            customRightArrow={<RightArrow></RightArrow>}
+                            infinite={true}
+                        >
 
-                        <BestBookItem
-                            bookImg="https://itbook.store/img/books/9780596529185.png"
-                            bookName="Test2"
-                            bookPrice="Hello"
-                        ></BestBookItem>
-
-                        <BestBookItem
-                            bookImg="https://itbook.store/img/books/9780596529185.png"
-                            bookName="Test2"
-                            bookPrice="Hello"
-                        ></BestBookItem>
-
-                        <BestBookItem
-                            bookImg="https://itbook.store/img/books/9780596529185.png"
-                            bookName="Test2"
-                            bookPrice="Hello"
-                        ></BestBookItem>
-
-                        <BestBookItem
-                            bookImg="https://itbook.store/img/books/9780596529185.png"
-                            bookName="Test2"
-                            bookPrice="Hello"
-                        ></BestBookItem>
-
-                        <BestBookItem
-                            bookImg="https://itbook.store/img/books/9780596529185.png"
-                            bookName="Test2"
-                            bookPrice="Hello"
-                        ></BestBookItem>
-
-                        <BestBookItem
-                            bookImg="https://itbook.store/img/books/9780596529185.png"
-                            bookName="Test2"
-                            bookPrice="Hello"
-                        ></BestBookItem>
-
-                    </BestBooksWrapper>
+                            {bestSeller.map((data, key) => {
+                                return (
+                                    <BookItem
+                                        bookImg={data.image}
+                                        bookName={data.title}
+                                        bookPrice={data.price}
+                                    ></BookItem>
+                                )
+                            })}
+                            
+                            
+                        </Carousel>
+                    </div>
                    
-                </div>
-
-                <div>
-                    <h1>hello</h1>
-                </div>
-
-                <div>
-                    <h1>hello</h1>
-                </div>
-
-                <div>
-                    <h1>hello</h1>
-                </div>
-
-                <div>
-                    <h1>hello</h1>
-                </div>
-
-                <div>
-                    <h1>hello</h1>
-                </div>
-
-                <div>
-                    <h1>hello</h1>
                 </div>
 
             </div>
         </div>
     )
 }
+
+export const ButtonGroup = ({ next, previous, goToSlide, ...rest }) => {
+    const { carouselState: { currentSlide } } = rest;
+    return (
+      <div className="carousel-button-group"> // remember to give it position:absolute
+        <FaChevronLeft className={currentSlide === 0 ? 'disable' : ' absolute top-0 left-0'} onClick={() => previous()} 
+            />
+        <FaChevronRight onClick={() => next()} className='absolute top-24 bg-black right-0 text-black text-2xl '/>
+      </div>
+    );
+  };
