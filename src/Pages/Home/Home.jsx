@@ -5,7 +5,7 @@ import {RightArrow} from '../../Components/Arrows/RightArrow'
 import {LeftArrow} from '../../Components/Arrows/LeftArrow'
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
-
+import {ViewCart} from '../../Components/ViewCart/ViewCart'
 import { useEffect, useState } from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -30,7 +30,7 @@ export const Home = () => {
     
         tablet: {
           breakpoint: { max: 1024, min: 700 },
-          items: 3
+          items: 4
         },
         mobile: {
           breakpoint: { max: 700, min: 0 },
@@ -49,7 +49,8 @@ export const Home = () => {
 
     
     return (
-        <div id="home-container" className='font-secondary w-full relative z-0 text-secondary-1'>
+        <div id="home-container" className='font-secondary w-full relative text-secondary-1'>
+            <ViewCart></ViewCart>
             <Message></Message>
             <Navbar></Navbar>   
 
@@ -57,7 +58,7 @@ export const Home = () => {
 
                 <div id="front-page" className='relative flex flex-col justify-center m-auto p-4 w-full font-primary'>
 
-                    <div id='front-page-content font-primary' className='w-2/3 text-secondary-1 font-bold text-4xl  border border-black ml-5
+                    <div id='front-page-content font-primary' className='w-2/3 text-secondary-1 font-bold text-4xl  ml-5
                      sm:text-6xl md:text-7xl xl:text-9xl xl:ml-16'>
                         <h1 className=''>A SOFA,</h1>
                         <h1 className=''>A GOOD BOOK, </h1>
@@ -67,15 +68,15 @@ export const Home = () => {
                 
                 </div>
                    
-                <div id="best-sellers" className='border border-black w-full mt-5 font-secondary
-                md:mt-28'>
+                <div id="best-sellers" className='w-full mt-5 font-secondary
+                md:mt-20'>
                     <div className='text-center flex flex-col gap-2'>
                         <h1 className='text-xl sm:text-2xl font-light'>BINK. Publishers</h1>
                         <h1 className='text-3xl sm:text-5xl font-extrabold font-primary'>BESTSELLERS</h1>
                     </div>
                 </div>
 
-                <div id='recommended-books' className='w-full border mt-5 relative bg-secondary-1 h-96
+                <div id='recommended-books' className='w-full border mt-5 relative bg-secondary-1 h-auto
                 md:mt-36'>
                     
                     <div className='w-11/12 m-auto relative 

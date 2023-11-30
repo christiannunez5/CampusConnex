@@ -26,6 +26,12 @@ export default {
       screens: {
         'sm': '500px',
         'md' : '700px'
+      },
+      height: {
+        '13/100': "13%"
+      },
+      width: {
+        '23': "23%"
       }
     },
   },

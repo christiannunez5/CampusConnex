@@ -14,6 +14,7 @@
     background-image: url('https://static.wixstatic.com/media/ea71bb_04fa8a795ad24075b39c085d743035a2~mv2_d_6284_1717_s_2.jpg/v1/fill/w_1754,h_655,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ea71bb_04fa8a795ad24075b39c085d743035a2~mv2_d_6284_1717_s_2.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    z-index: 0;
 }
 
 #message-icon {
@@ -64,9 +65,30 @@
     top: 95px;
 }
 
-
 .margin {
     padding-left: 5px;
+}
+
+#cart-center {
+    height: calc(100% - 26%);
+}
+
+#view-cart-container {
+    transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+#view-cart {
+    transition: transform 0.7s ease;
+}
+
+.slide-left {
+    transform: translateX(0);
+}
+
+.cart-container-extended {
+    transform: translateX(0);
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
 }
 
 
