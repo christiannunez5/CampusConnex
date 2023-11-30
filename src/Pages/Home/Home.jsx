@@ -6,13 +6,24 @@ import {LeftArrow} from '../../Components/Arrows/LeftArrow'
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronLeft } from "react-icons/fa";
 import {ViewCart} from '../../Components/ViewCart/ViewCart'
+import { ViewProduct } from '../../Components/ViewProduct/ViewProduct'
 import { useEffect, useState } from 'react'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-
 export const Home = () => {
-    
+
+    const [quickView, setQuickView] = useState("");
+
+    const handleQuickView = (data) => {
+        const viewProductContainer = document.querySelector("#view-product-container");
+        viewProductContainer.classList.toggle("view-product-container-extended")
+
+        const productItem = document.querySelector("#product-item");
+        productItem.classList.toggle("product-item-extended")
+        setQuickView(data)
+    }
+    console.log(quickView)
     const CustomRightArrow = ({ onClick, ...rest }) => {
         const {
           onMove,
@@ -47,13 +58,21 @@ export const Home = () => {
         .then(data => setBestSeller(data.books))
     },[])
 
+    console.log(quickView)
     
     return (
-        <div id="home-container" className='font-secondary w-full relative text-secondary-1'>
+        <div id="home-container" className='font-secondary w-full relative text-secondary-1 z-20'>
+             <ViewProduct 
+             handleQuickView={handleQuickView}
+             bookName={quickView.title}
+             bookImg={quickView.image}
+             bookPrice={quickView.price}
+             ></ViewProduct>
             <ViewCart></ViewCart>
             <Message></Message>
             <Navbar></Navbar>   
 
+            
             <div className="main w-screen sm:w-95 md:w-11/12 m-auto font-secondary">
 
                 <div id="front-page" className='relative flex flex-col justify-center m-auto p-4 w-full font-primary'>
@@ -68,7 +87,7 @@ export const Home = () => {
                 
                 </div>
                    
-                <div id="best-sellers" className='w-full mt-5 font-secondary
+                <div id="best-sellers" className='w-full mt-5 font-secondary relative
                 md:mt-20'>
                     <div className='text-center flex flex-col gap-2'>
                         <h1 className='text-xl sm:text-2xl font-light'>BINK. Publishers</h1>
@@ -93,12 +112,13 @@ export const Home = () => {
                             
                         >
 
-                            {bestSeller.map((data, key) => {
+                            {bestSeller.map((data, index) => {
                                 return (
-                                    <BookItem
+                                    <BookItem key={index}
                                         bookImg={data.image}
                                         bookName={data.title}
                                         bookPrice={data.price}
+                                        handleQuickView={() => handleQuickView(data)}
                                     ></BookItem>
                                 )
                             })}

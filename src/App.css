@@ -86,10 +86,31 @@
 }
 
 .cart-container-extended {
-    transform: translateX(0);
     background-color: rgba(0, 0, 0, 0.5);
     height: 100vh;
 }
+
+#view-product-container {
+    transition: background-color 0.3s ease;
+}
+
+
+.view-product-container-extended {
+    z-index: 50;
+    background-color: rgba(0, 0, 0, 0.5);
+} 
+
+#product-item {
+    transition: opacity 0.5s ease, height 0.3s ease;
+}
+
+.product-item-extended {
+    opacity: 1;
+    height: 24rem;
+
+}
+
+
 
 
 @media screen and (min-width: 400px){

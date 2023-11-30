@@ -1,12 +1,12 @@
 
-export const BookItem = ({ bookImg, bookName, bookPrice }) => {
+export const BookItem = ({ bookImg, bookName, bookPrice, handleQuickView}) => {
     return (
         <div className="bg-secondary-3 shrink-0 cursor-pointer relative mt-7" id="book-item">
 
             <div className="relative h-56">
                 <img src={bookImg} alt="" className="h-full w-full" />
 
-                <div id="quick-view" className="absolute bottom-0 w-full py-5 text-center text-black font-light bg-white-rgba text-base">
+                <div id="quick-view" className="absolute bottom-0 w-full py-5 text-center text-black font-light bg-white-rgba text-base" onClick={handleQuickView}>
                     <p>Quick View</p>
                 </div>
             </div>
