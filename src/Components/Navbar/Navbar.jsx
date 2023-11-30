@@ -17,8 +17,8 @@ export const Navbar = () => {
       
     }
     return (
-        <div id="navbar-container" className="relative w-95 bg-primary flex justify-between py-4 items-center m-auto
-        md:py-8 sm:w-95 md:w-11/12 ">
+        <div id="navbar-container" className="relative w-11/12 bg-primary flex justify-between py-4 items-center m-auto
+        md:py-8 sm:w-95">
             
             <div id="nav-left" className="">
                 <div id="title-section" className="text-sm flex border-4 border-secondary-1 tracking-wide
@@ -50,7 +50,8 @@ export const Navbar = () => {
                 
                 <li className="flex items-center justify-center cursor-pointer relative pr-3 hover:brightness-150 text-secondary-1" onClick={handleCart}>
                     <p className="absolute right-0 top-0">{cart}</p>
-                    <LuShoppingCart className="text-3xl"></LuShoppingCart>
+                    <LuShoppingCart className="text-2xl
+                    md:text-3xl"></LuShoppingCart>
                 </li>
 
                 <IoMenu className="text-secondary-1 cursor-pointer hover:brightness-150 text-2xl md:hidden"></IoMenu>
