@@ -21,18 +21,19 @@ export const Navbar = () => {
         md:py-8 sm:w-95">
             
             <div id="nav-left" className="">
-                <div id="title-section" className="text-sm flex border-4 border-secondary-1 tracking-wide
+                <div id="title-section" className="text-sm flex border-2 border-secondary-1 tracking-wide
                 sm:text-base ">
                     
-                    <div className="bg-secondary-1 text-primary font-extrabold px-3 py-1
-                      sm:font-bold" >
-                        <h1>FLAMINGO.</h1>
+                    <div className="bg-secondary-1 text-primary font-extrabold px-1 py-1 font-primary
+                      sm:font-bold sm:px-4 xl:px-10" >
+                        <h1>CAMPUS</h1>
                     </div>
 
                     <div className=" text-secondary-1 cursor-pointer hover:bg-secondary-1
-                     hover:text-primary font-light flex items-center justify-center px-3 py-1
+                     hover:text-primary font-light flex items-center justify-center px-1 py-1
+                     sm:px-4 xl:px-10
                      ">
-                        <h1>PUBLISHERS</h1>
+                        <h1>Connex</h1>
                     </div>
 
                 </div>
@@ -44,7 +45,9 @@ export const Navbar = () => {
                 <NavRightItem name="about"></NavRightItem>
                 <NavRightItem name="contact"></NavRightItem>
                 <NavRightItem name="login">
-                    <IoPersonSharp></IoPersonSharp>
+                    <div className="bg-secondary-1 w-6 h-6 flex items-center justify-center rounded-full">
+                        <IoPersonSharp className="text-primary"></IoPersonSharp>
+                    </div>
                 </NavRightItem>
 
                 

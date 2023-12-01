@@ -25,14 +25,15 @@ export const ViewProduct = ({bookImg, bookName, bookPrice, handleQuickView}) => 
                     </div>
 
                     <div className="flex flex-col text-black">
-                        <label htmlFor="" className="text-black font-extralight">Quanity</label>
+                        <label htmlFor="" className="text-black font-extralight">Quantity</label>
                         <input type="number" id="quantity" name="quantity" 
                         min="1" max="100" 
                         step="1" className="w-20 h-7 pl-4 outline-secondary-1 border border-black
                         "/>
                     </div>
 
-                    <div className="w-full bg-secondary-1 text-primary font-extralight mx-auto text-center cursor-pointer text-sm py-2">
+                    <div className="w-full bg-secondary-1 text-primary font-extralight mx-auto text-center cursor-pointer text-sm py-2
+                    md:text-base">
                         <p>Add to cart</p>
                     </div>
 
