@@ -4,7 +4,7 @@ export const CartItem = ({bookImg, bookName, bookPrice, quantity, handleQuantity
 
     return (
 
-        <div className="grid grid-cols-2 py-4 w-full gap-2 border-b-2 relative">
+        <div className="grid grid-cols-2 py-4 w-full gap-2 border-b-2 relative overflow-x-hidden" id="cart-item">
             
             <div className="w-full h-full bg-secondary-3 relative cursor-pointer" id="cart-image">
                 <img className="w-full h-full" 
@@ -14,7 +14,6 @@ export const CartItem = ({bookImg, bookName, bookPrice, quantity, handleQuantity
                     <FaTrashCan className="text-xl text-red-700 float-right"/>
                 </div>
 
-               
             </div>
 
             <div className="w-full  text-secondary-1 font-light h-full pr-2">
@@ -27,7 +26,7 @@ export const CartItem = ({bookImg, bookName, bookPrice, quantity, handleQuantity
                    </div>
 
                    <div className="w-16 border border-black h-5 relative grid place-content-center">
-                        <p className="absolute left-0 bg-secondary-3 h-full w-4 grid place-content-center cursor-pointer" >-</p>
+                        {quantity != 0 && <p className="absolute left-0 bg-secondary-3 h-full w-4 grid place-content-center cursor-pointer" onClick={handleQuantity}>-</p>}
                         <p className="absolute right-0 bg-secondary-3 h-full w-4 grid place-content-center cursor-pointer" onClick={handleQuantity}>+</p>
                         <p className="text-sm">{quantity}</p>
                    </div>

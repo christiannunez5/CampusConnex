@@ -2,7 +2,7 @@ import {Navbar} from '../../Components/Navbar/Navbar'
 import {Message} from '../../Components/Message/Message'
 import {ViewCart} from '../../Components/Cart/ViewCart'
 import { ViewProduct } from '../../Components/ViewProduct/ViewProduct'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BooksCarousel } from '../../Components/BooksCarousel/BooksCarousel'
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -12,8 +12,8 @@ export const Home = () => {
     
 
     const[cart, setCart] = useState([]);
-    const [quantity, setQuantity] = useState(0);
-
+    const [myId, setMyId] = useState(-1);
+    const [indexHolder, setIndexHolder] = useState(0)
     const [quickView, setQuickView] = useState("");
     const [bestSeller, setBestSeller] = useState([]);
     const [recommendedBooks, setRecommendedBooks] = useState([]);
@@ -34,27 +34,50 @@ export const Home = () => {
             price: data.price,
             image: data.image,
             title: data.title,
+            id: myId,
             quantity: 1,
         }
 
+        setMyId(prev => prev + 1)
         setCart([...cart, dataItem])
-
         const cartContainer = document.querySelector("#view-cart-container");
         const viewCart = document.querySelector("#view-cart")
         cartContainer.classList.toggle("cart-container-extended");
         viewCart.classList.toggle("slide-left")
     }
 
-    const deleteCartItem = (index) => {
+    console.log(myId)
+    console.log(cart)
+
+    const deleteCartItem = (e, index) => {
+
+        const cartItems = document.querySelectorAll('#cart-item');
+        if (e.target.id === "delete-container")
+            e.target.parentNode.parentNode.classList.add("cart-item-extended")
+
+        else
+            e.target.parentNode.parentNode.parentNode.parentNode.classList.add("cart-item-extended")
+        
+        cartItems[index].style.transform = "translateX(100%)";
+            
         const updatedCart = cart.filter((data, cartIndex) => {
-            return cartIndex !== index;
+             return cartIndex !== index;
         })
-        setCart(updatedCart)
+        
+        setTimeout(() => {
+              setCart(updatedCart)
+         }, 700)
+        
     }
 
-    const handleQuantity = (index) => {
+    const handleQuantity = (e, index) => {
         const updatedCart = [...cart];
-        updatedCart[index].quantity += 1
+
+        if (e.target.innerHTML === "+")
+            updatedCart[index].quantity += 1
+        else
+            updatedCart[index].quantity -= 1
+        
         setCart(updatedCart);
     }
     
@@ -68,9 +91,7 @@ export const Home = () => {
         .then(response => response.json())
         .then(data => setRecommendedBooks(data.books))
     },[])
-
-
-    
+  
     
     return (
         <div id="home-container" className='font-secondary w-full relative text-secondary-1 z-20'>

@@ -114,7 +114,14 @@
     display: flex;
 }
 
+#cart-item {
+    transition: transform 0.3s ease;
+}
 
+.hello {
+    transform: translateX(100%);
+    background-color: red;
+}
 
 
 @media screen and (min-width: 400px){

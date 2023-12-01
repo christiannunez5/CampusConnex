@@ -6,6 +6,7 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
 
     const [total, setTotal] = useState("");
     
+
     const handleCart = () => {
         const cartContainer = document.querySelector("#view-cart-container");
         const viewCart = document.querySelector("#view-cart")
@@ -23,8 +24,6 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
 
         return total;
     }
-
-    console.log(total);
 
     const roundNumber = (stringNumber) => {
         const floatingNumber = parseFloat(stringNumber);
@@ -53,9 +52,9 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
                 <>
                 <div className={total !== "" ? "p-6 relative flex flex-col gap-3" : "text-center"} id="cart-center">
 
-                    <div className="w-full h-full overflow-y-scroll ">
+                    <div className="w-full h-full overflow-y-scroll">
 
-                        <div className="w-full flex flex-col ">
+                        <div className="w-full flex flex-col overflow-x-hidden">
 
                             {cartItems.map((data, index) => {
                                 return (
@@ -63,10 +62,10 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
                                         bookName={data.title}
                                         bookPrice={data.price}
                                         bookImg={data.image}
-                                        key={index}
+                                        key={data.id}
                                         quantity={data.quantity}
-                                        handleQuantity={() => handleQuantity(index)}
-                                        deleteCartItem={() => deleteCartItem(index)}
+                                        handleQuantity={(e) => handleQuantity(e, index)}
+                                        deleteCartItem={(e) => deleteCartItem(e, index)}
                                         // bookSubtotal={bookSubtotal}
                                     ></CartItem>
                                 )
