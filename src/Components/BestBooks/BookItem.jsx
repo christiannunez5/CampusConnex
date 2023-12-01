@@ -1,5 +1,5 @@
 
-export const BookItem = ({ bookImg, bookName, bookPrice, handleQuickView}) => {
+export const BookItem = ({ bookImg, bookName, bookPrice, handleQuickView, addCart}) => {
     return (
         <div className="bg-secondary-3 cursor-pointer relative mt-7 h-auto" id="book-item">
 
@@ -19,7 +19,8 @@ export const BookItem = ({ bookImg, bookName, bookPrice, handleQuickView}) => {
                     <p>{bookName}</p>
                 </div>
                 
-                <div className="border border-white bg-secondary-1 p-1 text-primary text-center cursor-pointer text-base" id="add-cart">
+                <div className="border border-white bg-secondary-1 p-1 text-primary text-center cursor-pointer text-base" 
+                id="add-cart" onClick={addCart}>
                     <h1>Add to Cart</h1>
                 </div>
 

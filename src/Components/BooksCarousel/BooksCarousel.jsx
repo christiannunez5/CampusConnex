@@ -5,7 +5,8 @@ import "react-multi-carousel/lib/styles.css";
 import {RightArrow} from '../../Components/Arrows/RightArrow'
 import {LeftArrow} from '../../Components/Arrows/LeftArrow'
 
-export const BooksCarousel = ({books, handleQuickView, putTranslate}) => {
+export const BooksCarousel = ({books, handleQuickView, putTranslate, addCart}) => {
+
 
     const deviceType = () => {
         const width = window.innerWidth;
@@ -36,7 +37,6 @@ export const BooksCarousel = ({books, handleQuickView, putTranslate}) => {
         }
     };
 
-    console.log(putTranslate && isTablet)
 
     return (
 
@@ -59,6 +59,7 @@ export const BooksCarousel = ({books, handleQuickView, putTranslate}) => {
                             bookName={data.title}
                             bookPrice={data.price}
                             handleQuickView={() => handleQuickView(data)}
+                            addCart={() => addCart(data)}
                         ></BookItem>
                     )
                 })}

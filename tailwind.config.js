@@ -6,6 +6,7 @@ export default {
   ],
   theme: {
     extend: {
+      
       colors: {
         primary: "#ffffff",
         secondary: {
@@ -23,6 +24,9 @@ export default {
       width: {
         95: "95%"
       },
+      height: {
+        95: "95%"
+      },
       screens: {
         'sm': '500px',
         'md' : '700px'
@@ -32,7 +36,12 @@ export default {
       },
       width: {
         '23': "23%"
+      },
+      
+      borderWidth: {
+        '1': '1px'
       }
+      
     },
   },
   plugins: [],

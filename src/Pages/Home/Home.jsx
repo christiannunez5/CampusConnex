@@ -1,20 +1,25 @@
 import {Navbar} from '../../Components/Navbar/Navbar'
 import {Message} from '../../Components/Message/Message'
-import {ViewCart} from '../../Components/ViewCart/ViewCart'
+import {ViewCart} from '../../Components/Cart/ViewCart'
 import { ViewProduct } from '../../Components/ViewProduct/ViewProduct'
 import { useEffect, useState } from 'react'
 import { BooksCarousel } from '../../Components/BooksCarousel/BooksCarousel'
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 export const Home = () => {
+    
+    
+
+    const[cart, setCart] = useState([]);
+    const [quantity, setQuantity] = useState(0);
 
     const [quickView, setQuickView] = useState("");
     const [bestSeller, setBestSeller] = useState([]);
     const [recommendedBooks, setRecommendedBooks] = useState([]);
 
     const handleQuickView = (data) => {
+
         const viewProductContainer = document.querySelector("#view-product-container");
         viewProductContainer.classList.toggle("view-product-container-extended")
 
@@ -23,17 +28,32 @@ export const Home = () => {
         setQuickView(data)
     }
 
-    const CustomRightArrow = ({ onClick, ...rest }) => {
-        const {
-          onMove,
-          carouselState: { currentSlide, deviceType }
-        } = rest;
-        // onMove means if dragging or swiping in progress.
-        return <button onClick={() => onClick()} />;
-    };
+    const handleAddCart = (data) => {
+        
+        const dataItem = {
+            price: data.price,
+            image: data.image,
+            title: data.title,
+            quantity: 1,
+        }
 
-   
+        setCart([...cart, dataItem])
 
+        const cartContainer = document.querySelector("#view-cart-container");
+        const viewCart = document.querySelector("#view-cart")
+        cartContainer.classList.toggle("cart-container-extended");
+        viewCart.classList.toggle("slide-left")
+    }
+
+    const handleQuantity = (index) => {
+        const updatedCart = [...cart];
+        updatedCart[index].quantity += 1
+        console.log(index)
+        setCart(updatedCart);
+    }
+    
+    
+    console.log(cart);
     useEffect(() => {
         fetch("https://api.itbook.store/1.0/search/bestseller")
         .then(response => response.json())
@@ -46,6 +66,7 @@ export const Home = () => {
 
 
     
+    
     return (
         <div id="home-container" className='font-secondary w-full relative text-secondary-1 z-20'>
              <ViewProduct 
@@ -53,12 +74,14 @@ export const Home = () => {
              bookName={quickView.title}
              bookImg={quickView.image}
              bookPrice={quickView.price}
+             
              ></ViewProduct>
-            <ViewCart></ViewCart>
+            <ViewCart
+            cartItems={cart}
+            handleQuantity={handleQuantity}></ViewCart>
             <Message></Message>
-            <Navbar></Navbar>   
+            <Navbar cartNumber={cart.length}></Navbar>   
 
-            
             <div className="main w-screen sm:w-95 md:w-11/12 m-auto font-secondary">
 
                 <div id="front-page" className='relative flex flex-col justify-center m-auto p-4 w-full font-primary'>
@@ -88,13 +111,14 @@ export const Home = () => {
                     <BooksCarousel 
                     putTranslate={true}
                     books={bestSeller}
-                    handleQuickView={handleQuickView}>
-
+                    handleQuickView={handleQuickView}
+                    addCart={handleAddCart}
+                    >
                     </BooksCarousel>
 
                 </div>
                 
-
+        
                 <div className='bg-secondary-1 text-white w-full pb-8
                 md:-translate-y-16'>
                     
@@ -116,8 +140,7 @@ export const Home = () => {
 
 
                 </div>
-                
-            
+                  
             </div>
 
         </div>

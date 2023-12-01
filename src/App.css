@@ -70,7 +70,7 @@
 }
 
 #cart-center {
-    height: calc(100% - 26%);
+    height: calc(100% - (13% + 5rem));
 }
 
 #view-cart-container {
@@ -134,6 +134,10 @@
 
     #best-books-wrapper {
         transform: translateY(-33%);
+    }
+
+    #view-cart {
+        width: 350px;
     }
 
 }

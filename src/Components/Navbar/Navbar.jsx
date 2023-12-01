@@ -5,17 +5,16 @@ import { NavRightItem } from "./NavRightItem";
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 
-export const Navbar = () => {
-    const [cart, setCart] = useState(0);
+export const Navbar = ({cartNumber}) => {
 
     const handleCart = () => {
         const cartContainer = document.querySelector("#view-cart-container");
         const viewCart = document.querySelector("#view-cart")
         cartContainer.classList.toggle("cart-container-extended");
         viewCart.classList.toggle("slide-left")
-
-      
     }
+
+    
     return (
         <div id="navbar-container" className="relative w-11/12 bg-primary flex justify-between py-4 items-center m-auto
         md:py-8 sm:w-95">
@@ -52,7 +51,7 @@ export const Navbar = () => {
 
                 
                 <li className="flex items-center justify-center cursor-pointer relative pr-3 hover:brightness-150 text-secondary-1" onClick={handleCart}>
-                    <p className="absolute right-0 top-0">{cart}</p>
+                    <p className="absolute right-0 top-0">{cartNumber}</p>
                     <LuShoppingCart className="text-2xl
                     md:text-3xl"></LuShoppingCart>
                 </li>
