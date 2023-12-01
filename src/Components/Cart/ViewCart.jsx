@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { CartItem } from "./CartItem";
 
-export const ViewCart = ({cartItems, handleQuantity}) => {
+export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
 
     const [total, setTotal] = useState("");
     
@@ -26,6 +26,13 @@ export const ViewCart = ({cartItems, handleQuantity}) => {
 
     console.log(total);
 
+    const roundNumber = (stringNumber) => {
+        const floatingNumber = parseFloat(stringNumber);
+        const roundedNumber = parseFloat(floatingNumber.toFixed(2));
+        return roundedNumber;
+    }
+    
+
     useEffect(() => {
         getTotal();
         
@@ -39,10 +46,12 @@ export const ViewCart = ({cartItems, handleQuantity}) => {
 
                 <div className="w-full h-20 bg-secondary-1 text-primary flex items-center relative justify-center">
                     <FaChevronRight className="absolute left-7 text-base cursor-pointer" onClick={handleCart}/>
-                    <h1 className="text-lg font-secondary font-light">Cart</h1>
+                    <h1 className="text-2xl font-secondary font-light">Cart</h1>
                 </div>
 
-                <div className="p-6 relative flex flex-col gap-3" id="cart-center">
+                {total !== "" ?
+                <>
+                <div className={total !== "" ? "p-6 relative flex flex-col gap-3" : "text-center"} id="cart-center">
 
                     <div className="w-full h-full overflow-y-scroll ">
 
@@ -57,6 +66,7 @@ export const ViewCart = ({cartItems, handleQuantity}) => {
                                         key={index}
                                         quantity={data.quantity}
                                         handleQuantity={() => handleQuantity(index)}
+                                        deleteCartItem={() => deleteCartItem(index)}
                                         // bookSubtotal={bookSubtotal}
                                     ></CartItem>
                                 )
@@ -69,7 +79,7 @@ export const ViewCart = ({cartItems, handleQuantity}) => {
                     <div className="w-full
                     md:text-3xl font-light">
                         <p className="">Subtotal</p>
-                        <p>${total}</p>
+                        <p>${roundNumber(total)}</p>
                     </div>
 
                 </div>
@@ -81,8 +91,10 @@ export const ViewCart = ({cartItems, handleQuantity}) => {
                     </div>
 
                 </div>
-
+                </> : <h1 className=" h-full grid place-content-center
+                md:text-2xl">Cart is Empty</h1>}
             </div>
+            
         </div>
     )
 }

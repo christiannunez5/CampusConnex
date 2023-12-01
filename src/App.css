@@ -110,6 +110,10 @@
     height: 24rem;
 }
 
+#cart-image:hover #delete-container{
+    display: flex;
+}
+
 
 
 

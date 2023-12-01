@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { FaTrashCan } from "react-icons/fa6";
 
-
-export const CartItem = ({bookImg, bookName, bookPrice, quantity, handleQuantity}) => {
+export const CartItem = ({bookImg, bookName, bookPrice, quantity, handleQuantity, deleteCartItem}) => {
 
     return (
 
-        <div className="grid grid-cols-2 py-4 w-full gap-2 border-b-2">
-
-            <div className="w-full h-full bg-secondary-3">
-
-                <img className="w-full h-full"
+        <div className="grid grid-cols-2 py-4 w-full gap-2 border-b-2 relative">
+            
+            <div className="w-full h-full bg-secondary-3 relative cursor-pointer" id="cart-image">
+                <img className="w-full h-full" 
                 src={bookImg} alt="" />
+
+                <div className="hidden absolute bottom-0 bg-black-rgba w-9 h-9 rounded-full items-center justify-center" id="delete-container" onClick={deleteCartItem}>
+                    <FaTrashCan className="text-xl text-red-700 float-right"/>
+                </div>
+
+               
             </div>
 
             <div className="w-full  text-secondary-1 font-light h-full pr-2">

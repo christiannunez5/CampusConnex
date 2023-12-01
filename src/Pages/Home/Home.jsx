@@ -45,15 +45,20 @@ export const Home = () => {
         viewCart.classList.toggle("slide-left")
     }
 
+    const deleteCartItem = (index) => {
+        const updatedCart = cart.filter((data, cartIndex) => {
+            return cartIndex !== index;
+        })
+        setCart(updatedCart)
+    }
+
     const handleQuantity = (index) => {
         const updatedCart = [...cart];
         updatedCart[index].quantity += 1
-        console.log(index)
         setCart(updatedCart);
     }
     
     
-    console.log(cart);
     useEffect(() => {
         fetch("https://api.itbook.store/1.0/search/bestseller")
         .then(response => response.json())
@@ -78,7 +83,8 @@ export const Home = () => {
              ></ViewProduct>
             <ViewCart
             cartItems={cart}
-            handleQuantity={handleQuantity}></ViewCart>
+            handleQuantity={handleQuantity}
+            deleteCartItem={deleteCartItem}></ViewCart>
             <Message></Message>
             <Navbar cartNumber={cart.length}></Navbar>   
 
@@ -134,8 +140,9 @@ export const Home = () => {
                      <BooksCarousel 
                      books={recommendedBooks}
                      putMargin={false}
-                     handleQuickView={handleQuickView}>     
-                        
+                     handleQuickView={handleQuickView}
+                     addCart={handleAddCart}>     
+                    
                     </BooksCarousel>
 
 
