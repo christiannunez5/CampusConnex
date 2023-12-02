@@ -6,7 +6,6 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
 
     const [total, setTotal] = useState("");
     
-
     const handleCart = () => {
         const cartContainer = document.querySelector("#view-cart-container");
         const viewCart = document.querySelector("#view-cart")
@@ -34,7 +33,6 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
 
     useEffect(() => {
         getTotal();
-        
     },[cartItems])
 
    
@@ -62,7 +60,6 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
                                         bookName={data.title}
                                         bookPrice={data.price}
                                         bookImg={data.image}
-                                        key={data.id}
                                         quantity={data.quantity}
                                         handleQuantity={(e) => handleQuantity(e, index)}
                                         deleteCartItem={(e) => deleteCartItem(e, index)}

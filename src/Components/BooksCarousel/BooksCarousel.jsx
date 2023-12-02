@@ -43,18 +43,19 @@ export const BooksCarousel = ({books, handleQuickView, putTranslate, addCart}) =
         <div className='w-11/12 mx-auto trans' style={putTranslate && !isTablet ? {transform : 'translateY(-112px)'} : {}}>
             
             <Carousel 
-                responsive={responsive}
-                customRightArrow={<RightArrow></RightArrow>}
-                customLeftArrow={<LeftArrow></LeftArrow>}
-                containerClass='margin'
-                infinite={true}
-                autoPlaySpeed={2500}
-                autoPlay={true}
-                removeArrowOnDeviceType={["mobile"]}>
+              responsive={responsive}
+              customRightArrow={<RightArrow></RightArrow>}
+              customLeftArrow={<LeftArrow></LeftArrow>}
+              containerClass='margin'
+              infinite={true}
+              // autoPlaySpeed={2500}
+              // autoPlay={true}
+              removeArrowOnDeviceType={["mobile"]}>
 
-                {books.map((data, index) => {
+              {books.map((data, index) => {
                     return (
-                        <BookItem key={index}
+                        <BookItem
+                            key={data.index}
                             bookImg={data.image}
                             bookName={data.title}
                             bookPrice={data.price}

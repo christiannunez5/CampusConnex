@@ -117,11 +117,13 @@
 }
 
 #cart-item {
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.1s ease;
 }
+
 
 .cart-item-extended {
     transform: translateX(100%);
+    opacity: 0;
 }
 
 #our-story {
@@ -136,6 +138,9 @@
 
 #show-message {
     transition: height 0.5s ease, opacity 0.5s ease;
+    box-shadow: 1px 0px 35px 0px rgba(0,0,0,0.66);
+-webkit-box-shadow: 1px 0px 35px 0px rgba(0,0,0,0.66);
+-moz-box-shadow: 1px 0px 35px 0px rgba(0,0,0,0.66);
 }
 
 .show-message-extended {

@@ -9,31 +9,13 @@ import { ShowMessage } from '../../Components/Message/ShowMessage'
 
 export const Home = () => {
     
+    const [tempCart, setTempCart] = useState([]);
     const[cart, setCart] = useState([]);
-    const [myId, setMyId] = useState(-1);
+    const [myId, setMyId] = useState(0);
     const [indexHolder, setIndexHolder] = useState(0)
     const [quickView, setQuickView] = useState("");
     const [bestSeller, setBestSeller] = useState([]);
     const [recommendedBooks, setRecommendedBooks] = useState([]);
-    const [currentTime, setCurrentTime] = useState("");
-
-    const getTime = () => {
-        const Temp = new Date();
-        let hours = Temp.getHours();
-        if (hours >= 12)
-        {
-            hours = hours - 12;
-        }   
-
-        let minutes = Temp.getMinutes();
-        if (minutes < 10)
-            minutes = "0" + minutes;
-
-        const time = hours  + " : " + minutes;
-        return time;
-    }
-   
-
 
     const handleQuickView = (data) => {
 
@@ -61,7 +43,23 @@ export const Home = () => {
         }
 
         setMyId(prev => prev + 1)
-        setCart([...cart, dataItem])
+
+        const duplicate = cart.find((data) => {
+            return data.title === dataItem.title
+        })
+
+        console.log(duplicate);
+        
+        if (duplicate)
+        {
+            cart.map((data) => {
+                if (data.title === dataItem.title)
+                    data.quantity += 1
+            })
+        }
+
+        else
+            setCart([...cart, dataItem])
 
         const cartContainer = document.querySelector("#view-cart-container");
         const viewCart = document.querySelector("#view-cart")
@@ -69,36 +67,40 @@ export const Home = () => {
         viewCart.classList.toggle("slide-left")
     }
 
+    const handleCallback = (e) => {
+
+    }
+
     const deleteCartItem = (e, index) => {
 
-        console.log(e.target.tagName)
+        const updatedCart = cart.filter((data, cartIndex) => {
+            return cartIndex !== index;
+        })
 
-        if (e.target.id === "delete-container")
-        {
-            e.target.parentNode.parentNode.classList.add("cart-item-extended")
-            console.log(e.target.parentNode.parentNode)
-        }
+        const cartItems = document.querySelectorAll("#cart-item");
 
-        else if (e.target.tagName === "path")
+        console.log(cartItems[index])
+        cartItems[index].classList.add("cart-item-extended")
+
+        if (index === cart.length - 1)
         {
-            e.target.parentNode.parentNode.parentNode.parentNode.classList.add("cart-item-extended")
-            console.log( e.target.parentNode.parentNode.parentNode.parentNode)
+            cartItems[index].classList.add("cart-item-extended")
+            setTimeout(() => {
+                setCart(updatedCart)
+            }, 500)
         }
 
         else {
-            e.target.parentNode.parentNode.parentNode.classList.add("cart-item-extended")
-            console.log( e.target.parentNode.parentNode.parentNode)
+            
+            setTimeout(() => {
+                cartItems[index].classList.remove("cart-item-extended")
+                setCart(updatedCart)
+            }, 500)
+            
         }
 
-        const updatedCart = cart.filter((data, cartIndex) => {
-             return cartIndex !== index;
-        })
-        
-        setTimeout(() => {
-               setCart(updatedCart)
-        }, 300)
-        
     }
+
 
     const handleQuantity = (e, index) => {
         const updatedCart = [...cart];
@@ -125,23 +127,21 @@ export const Home = () => {
         fetch("https://api.itbook.store/1.0/search/ai")
         .then(response => response.json())
         .then(data => setRecommendedBooks(data.books))
-
-        setCurrentTime(getTime());
+        
     },[])
-  
-    
+
     return (
         <div id="home-container" className='font-secondary w-full relative text-secondary-1 z-20'>
             <ShowMessage
             handleMessage={handleMessage}
-            currentTime={currentTime}></ShowMessage>
+            ></ShowMessage>
             
              <ViewProduct 
              handleQuickView={handleQuickView}
              bookName={quickView.title}
              bookImg={quickView.image}
              bookPrice={quickView.price}
-             
+             addCart={(e) => handleAddCart(e, quickView)}
              ></ViewProduct>
             <ViewCart
             cartItems={cart}

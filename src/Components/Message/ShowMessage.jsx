@@ -40,16 +40,15 @@ export const ShowMessage = ({handleMessage}) => {
         
     }
 
-    console.log(firstMessage)
 
 
     return (
-        <div className="fixed right-0 bottom-0 z-30 w-full h-0 opacity-0
+        <div className="fixed right-0 bottom-0 z-30 w-full h-0 opacity-0 border-2 border-white
         sm:w-320" id="show-message">
     
             <div className="h-20 w-full bg-secondary-1 text-primary p-4 relative">
                 <div className="w-full relative">
-                    <p className="font-primary">CampusConnex</p>
+                    <p className="text-xl">CampusConnex</p>
                     <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                         <p className="font-extralight text-sm">We’ll reply as soon as we can</p>
