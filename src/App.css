@@ -143,6 +143,10 @@
     opacity: 1;
 }
 
+#show-message-center {
+    height: calc(100% - 10rem);
+}
+
 
 
 @media screen and (min-width: 400px){
@@ -150,6 +154,7 @@
         height: 60vh;
     }
 }
+
 
 @media screen and (min-width: 500px){
     #front-page {
@@ -164,6 +169,11 @@
     .show-message-extended {
         height: 500px;
     }
+
+    #show-message-center {
+        height: 21.5rem;
+    }
+    
 }
 
 @media screen and (min-width: 700px){

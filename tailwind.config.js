@@ -37,7 +37,10 @@ export default {
       
       borderWidth: {
         '1': '1px'
-      }
+      },
+      maxWidth: {
+        '95': "95%",
+      },
       
     },
   },
