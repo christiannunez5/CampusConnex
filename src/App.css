@@ -32,6 +32,7 @@
 
 #add-cart {
     transition: opacity 0.5s ease, background-color 0.4s ease;
+    animation-duration: 0.5s;
 }
 
 #quick-view{
@@ -59,6 +60,7 @@
 #book-item {
     margin-left: 8px;
     width: 85%;
+    animation-duration: 0.5s;
 }
 
 #arrow-right, #arrow-left{
@@ -115,13 +117,14 @@
 }
 
 #cart-item {
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
-.hello {
+.cart-item-extended {
     transform: translateX(100%);
-    background-color: red;
 }
+
+
 
 
 @media screen and (min-width: 400px){

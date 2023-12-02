@@ -23,13 +23,13 @@ export const Navbar = ({cartNumber}) => {
                 <div id="title-section" className="text-sm flex border-2 border-secondary-1 tracking-wide
                 sm:text-base ">
                     
-                    <div className="bg-secondary-1 text-primary font-extrabold px-1 py-1 font-primary
+                    <div className="bg-secondary-1 text-primary font-extrabold px-3 py-1 font-primary
                       sm:font-bold sm:px-4 xl:px-10" >
                         <h1>CAMPUS</h1>
                     </div>
 
                     <div className=" text-secondary-1 cursor-pointer hover:bg-secondary-1
-                     hover:text-primary font-light flex items-center justify-center px-1 py-1
+                     hover:text-primary font-light flex items-center justify-center px-3 py-1
                      sm:px-4 xl:px-10
                      ">
                         <h1>Connex</h1>
@@ -51,7 +51,9 @@ export const Navbar = ({cartNumber}) => {
 
                 
                 <li className="flex items-center justify-center cursor-pointer relative pr-3 hover:brightness-150 text-secondary-1" onClick={handleCart}>
-                    <p className="absolute right-0 top-0">{cartNumber}</p>
+
+                    <p className="absolute right-0 bottom-0 translate-y-2">{cartNumber}</p>
+
                     <LuShoppingCart className="text-2xl
                     md:text-3xl"></LuShoppingCart>
                 </li>

@@ -4,8 +4,8 @@ import {ViewCart} from '../../Components/Cart/ViewCart'
 import { ViewProduct } from '../../Components/ViewProduct/ViewProduct'
 import { useEffect, useRef, useState } from 'react'
 import { BooksCarousel } from '../../Components/BooksCarousel/BooksCarousel'
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { FaCheck } from "react-icons/fa6";
+
 
 export const Home = () => {
     
@@ -28,8 +28,13 @@ export const Home = () => {
         setQuickView(data)
     }
 
-    const handleAddCart = (data) => {
-        
+    const handleAddCart = (e, data) => {
+
+        e.target.innerHTML = "Added"
+        setTimeout(() => {
+            e.target.innerHTML = "Add to Cart"
+        }, 500)
+
         const dataItem = {
             price: data.price,
             image: data.image,
@@ -40,33 +45,61 @@ export const Home = () => {
 
         setMyId(prev => prev + 1)
         setCart([...cart, dataItem])
+
         const cartContainer = document.querySelector("#view-cart-container");
         const viewCart = document.querySelector("#view-cart")
         cartContainer.classList.toggle("cart-container-extended");
         viewCart.classList.toggle("slide-left")
     }
 
-    console.log(myId)
-    console.log(cart)
-
     const deleteCartItem = (e, index) => {
 
-        const cartItems = document.querySelectorAll('#cart-item');
+        console.log(e.target.tagName)
+
         if (e.target.id === "delete-container")
+        {
             e.target.parentNode.parentNode.classList.add("cart-item-extended")
+            console.log(e.target.parentNode.parentNode)
+        }
+
+        else if (e.target.tagName === "path")
+        {
+            e.target.parentNode.parentNode.parentNode.parentNode.classList.add("cart-item-extended")
+            console.log( e.target.parentNode.parentNode.parentNode.parentNode)
+        }
+
+        else {
+            e.target.parentNode.parentNode.parentNode.classList.add("cart-item-extended")
+            console.log( e.target.parentNode.parentNode.parentNode)
+        }
+
+        
+
+        /*
+        if (e.target.id === "delete-container")
+        {
+            e.target.parentNode.parentNode.classList.add("cart-item-extended")
+            setTimeout(() => {
+                e.target.parentNode.parentNode.classList.remove("cart-item-extended")
+            }, 500)
+        }
 
         else
+        {
             e.target.parentNode.parentNode.parentNode.parentNode.classList.add("cart-item-extended")
+            setTimeout(() => {
+                e.target.parentNode.parentNode.parentNode.parentNode.classList.remove("cart-item-extended")
+            }, 500)
+        } */
         
-        cartItems[index].style.transform = "translateX(100%)";
-            
+
         const updatedCart = cart.filter((data, cartIndex) => {
              return cartIndex !== index;
         })
         
         setTimeout(() => {
-              setCart(updatedCart)
-         }, 700)
+               setCart(updatedCart)
+        }, 300)
         
     }
 
@@ -87,7 +120,7 @@ export const Home = () => {
         .then(response => response.json())
         .then(data => setBestSeller(data.books))
 
-        fetch("https://api.itbook.store/1.0/search/recommended")
+        fetch("https://api.itbook.store/1.0/search/ai")
         .then(response => response.json())
         .then(data => setRecommendedBooks(data.books))
     },[])

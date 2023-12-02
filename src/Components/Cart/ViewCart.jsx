@@ -86,7 +86,7 @@ export const ViewCart = ({cartItems, handleQuantity, deleteCartItem}) => {
                 <div className="w-full h-13/100 border-t-2 absolute bottom-0 flex items-center justify-center">
                     
                     <div className="w-60 bg-secondary-1 text-center p-1 cursor-pointer">
-                        <h1 className="text-primary">Add to cart</h1>
+                        <h1 className="text-primary">Checkout</h1>
                     </div>
 
                 </div>
