@@ -17,7 +17,7 @@ export const Navbar = ({cartNumber}) => {
     
     return (
         <div id="navbar-container" className="relative w-11/12 bg-primary flex justify-between py-4 items-center m-auto
-        md:py-8 sm:w-95">
+        md:py-8 sm:w-95 md:w-11/12">
             
             <div id="nav-left" className="">
                 <div id="title-section" className="text-sm flex border-2 border-secondary-1 tracking-wide

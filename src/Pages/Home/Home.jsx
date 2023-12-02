@@ -4,19 +4,36 @@ import {ViewCart} from '../../Components/Cart/ViewCart'
 import { ViewProduct } from '../../Components/ViewProduct/ViewProduct'
 import { useEffect, useRef, useState } from 'react'
 import { BooksCarousel } from '../../Components/BooksCarousel/BooksCarousel'
-import { FaCheck } from "react-icons/fa6";
+import { ShowMessage } from '../../Components/Message/ShowMessage'
 
 
 export const Home = () => {
     
-    
-
     const[cart, setCart] = useState([]);
     const [myId, setMyId] = useState(-1);
     const [indexHolder, setIndexHolder] = useState(0)
     const [quickView, setQuickView] = useState("");
     const [bestSeller, setBestSeller] = useState([]);
     const [recommendedBooks, setRecommendedBooks] = useState([]);
+    const [currentTime, setCurrentTime] = useState("");
+
+    const getTime = () => {
+        const Temp = new Date();
+        let hours = Temp.getHours();
+        if (hours >= 12)
+        {
+            hours = hours - 12;
+        }   
+
+        let minutes = Temp.getMinutes();
+        if (minutes < 10)
+            minutes = "0" + minutes;
+
+        const time = hours  + " : " + minutes;
+        return time;
+    }
+   
+
 
     const handleQuickView = (data) => {
 
@@ -73,26 +90,6 @@ export const Home = () => {
             console.log( e.target.parentNode.parentNode.parentNode)
         }
 
-        
-
-        /*
-        if (e.target.id === "delete-container")
-        {
-            e.target.parentNode.parentNode.classList.add("cart-item-extended")
-            setTimeout(() => {
-                e.target.parentNode.parentNode.classList.remove("cart-item-extended")
-            }, 500)
-        }
-
-        else
-        {
-            e.target.parentNode.parentNode.parentNode.parentNode.classList.add("cart-item-extended")
-            setTimeout(() => {
-                e.target.parentNode.parentNode.parentNode.parentNode.classList.remove("cart-item-extended")
-            }, 500)
-        } */
-        
-
         const updatedCart = cart.filter((data, cartIndex) => {
              return cartIndex !== index;
         })
@@ -114,6 +111,11 @@ export const Home = () => {
         setCart(updatedCart);
     }
     
+    const handleMessage = () => {
+        const showMessageContainer = document.querySelector("#show-message")
+        showMessageContainer.classList.toggle("show-message-extended")
+    }
+
     
     useEffect(() => {
         fetch("https://api.itbook.store/1.0/search/bestseller")
@@ -123,11 +125,17 @@ export const Home = () => {
         fetch("https://api.itbook.store/1.0/search/ai")
         .then(response => response.json())
         .then(data => setRecommendedBooks(data.books))
+
+        setCurrentTime(getTime());
     },[])
   
     
     return (
         <div id="home-container" className='font-secondary w-full relative text-secondary-1 z-20'>
+            <ShowMessage
+            handleMessage={handleMessage}
+            currentTime={currentTime}></ShowMessage>
+            
              <ViewProduct 
              handleQuickView={handleQuickView}
              bookName={quickView.title}
@@ -139,7 +147,7 @@ export const Home = () => {
             cartItems={cart}
             handleQuantity={handleQuantity}
             deleteCartItem={deleteCartItem}></ViewCart>
-            <Message></Message>
+            <Message handleMessage={handleMessage}></Message>
             <Navbar cartNumber={cart.length}></Navbar>   
 
             <div className="main w-screen sm:w-95 md:w-11/12 m-auto font-secondary">
@@ -178,18 +186,16 @@ export const Home = () => {
 
                 </div>
                 
-        
-                <div className='bg-secondary-1 text-white w-full pb-8
-                md:-translate-y-16'>
+                <div className='bg-secondary-1 text-white w-full
+                md:-translate-y-16 md:pb-8'>
                     
                     <hr className='mx-auto w-20 text-white'/>
                     <div className='text-center py-5'>
                         <h1 className='text-xl sm:text-2xl font-light'>This Month's</h1>
-                        <h1 className='text-3xl sm:text-4xl md:text-5xl font-extrabold font-primary'>RECOMMENDED BOOKS</h1>
+                        <h1 className='text-3xl sm:text-3xl md:text-5xl font-extrabold font-primary'>RECOMMENDED BOOKS</h1>
                     </div>
 
                     <hr className='mx-auto w-20 text-white mb-16'/>
-                    
                     
                      <BooksCarousel 
                      books={recommendedBooks}
@@ -199,8 +205,29 @@ export const Home = () => {
                     
                     </BooksCarousel>
 
-
                 </div>
+
+                <div className='w-full  bg-secondary-1 pt-2 pb-12
+                md:-translate-y-16'>
+                    <hr className='w-8 mx-auto mb-10'/>
+                    <div className='w-95 mx-auto font-primary text-center text-primary font-bold text-3xl
+                    sm:text-4xl
+                    md:text-5xl
+                    lg:text-6xl
+                    xl:text-7xl'>
+                        <h1 className=''>THERES NO</h1>
+                        <h1>SUCH THING AS TOO </h1>
+                        <h1>MANY BOOKS</h1>
+                    </div>
+
+                    <div className='border-2 border-white w-40 h-14 text-white grid place-content-center mx-auto mt-8 cursor-pointer font-light hover:bg-primary hover:text-secondary-1' id='our-story'>
+                        <h1>Read our Story</h1>
+                    </div>
+
+                    <hr className='w-8 mx-auto mt-10'/>
+                </div>
+
+
                   
             </div>
 

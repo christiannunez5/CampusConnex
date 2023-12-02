@@ -21,21 +21,18 @@ export default {
         primary: ['Georgia', 'sans-serif'],
         secondary: ['Prompt', 'sans-serif'],
       },
-      width: {
-        95: "95%"
-      },
-      height: {
-        95: "95%"
-      },
       screens: {
         'sm': '500px',
         'md' : '700px'
       },
       height: {
-        '13/100': "13%"
+        '13/100': "13%",
+        '95': "95%"
       },
       width: {
-        '23': "23%"
+        '23': "23%",
+        '95': "95%",
+        '320': '320px',
       },
       
       borderWidth: {
