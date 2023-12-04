@@ -5,6 +5,7 @@ import { ViewProduct } from '../../Components/ViewProduct/ViewProduct'
 import { useEffect, useRef, useState } from 'react'
 import { BooksCarousel } from '../../Components/BooksCarousel/BooksCarousel'
 import { ShowMessage } from '../../Components/Message/ShowMessage'
+import { Sidebar } from '../../Components/Sidebar/Sidebar'
 
 
 export const Home = () => {
@@ -48,8 +49,6 @@ export const Home = () => {
             return data.title === dataItem.title
         })
 
-        console.log(duplicate);
-        
         if (duplicate)
         {
             cart.map((data) => {
@@ -118,6 +117,11 @@ export const Home = () => {
         showMessageContainer.classList.toggle("show-message-extended")
     }
 
+    const handleSidebar = () => {
+        const sidebar = document.querySelector("#sidebar");
+        sidebar.classList.toggle("sidebar-extended")
+    }
+
     
     useEffect(() => {
         fetch("https://api.itbook.store/1.0/search/bestseller")
@@ -132,10 +136,12 @@ export const Home = () => {
 
     return (
         <div id="home-container" className='font-secondary w-full relative text-secondary-1 z-20'>
+            <Sidebar username="Kanye West" handleSidebar={handleSidebar}
+            profileImg="https://i0.wp.com/culturalhistoryoftheinternet.com/wp-content/uploads/2020/11/cover2-1.jpg?resize=810%2C580&ssl=1"></Sidebar>
             <ShowMessage
             handleMessage={handleMessage}
             ></ShowMessage>
-            
+             <Message handleMessage={handleMessage}></Message>
              <ViewProduct 
              handleQuickView={handleQuickView}
              bookName={quickView.title}
@@ -147,8 +153,8 @@ export const Home = () => {
             cartItems={cart}
             handleQuantity={handleQuantity}
             deleteCartItem={deleteCartItem}></ViewCart>
-            <Message handleMessage={handleMessage}></Message>
-            <Navbar cartNumber={cart.length}></Navbar>   
+           
+            <Navbar cartNumber={cart.length} handleSidebar={handleSidebar}></Navbar>   
 
             <div className="main w-screen sm:w-95 md:w-11/12 m-auto font-secondary">
 
@@ -183,10 +189,9 @@ export const Home = () => {
                     addCart={handleAddCart}
                     >
                     </BooksCarousel>
-
                 </div>
                 
-                <div className='bg-secondary-1 text-white w-full
+                <div className='bg-secondary-1 text-white w-full pt-7
                 md:-translate-y-16 md:pb-8'>
                     
                     <hr className='mx-auto w-20 text-white'/>

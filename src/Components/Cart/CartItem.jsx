@@ -10,7 +10,7 @@ export const CartItem = ({bookImg, bookName, bookPrice, quantity, handleQuantity
                 <img className="w-full h-full" 
                 src={bookImg} alt="" />
 
-                <div className="hidden absolute bottom-0 bg-black-rgba w-9 h-9 rounded-full items-center justify-center" id="delete-container" onClick={deleteCartItem}>
+                <div className="absolute bottom-0 bg-black-rgba w-9 h-9 rounded-full flex items-center justify-center" id="delete-container" onClick={deleteCartItem}>
                     <FaTrashCan className="text-xl text-red-700 float-right"/>
                 </div>
 

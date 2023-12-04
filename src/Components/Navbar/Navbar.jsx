@@ -2,10 +2,10 @@ import { LuShoppingCart } from "react-icons/lu";
 import { IoPersonSharp } from "react-icons/io5";
 import { NavRight } from "./NavRight";
 import { NavRightItem } from "./NavRightItem";
-import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
-export const Navbar = ({cartNumber}) => {
+export const Navbar = ({cartNumber, handleSidebar}) => {
 
     const handleCart = () => {
         const cartContainer = document.querySelector("#view-cart-container");
@@ -16,8 +16,8 @@ export const Navbar = ({cartNumber}) => {
 
     
     return (
-        <div id="navbar-container" className="relative w-11/12 bg-primary flex justify-between py-4 items-center m-auto
-        md:py-8 sm:w-95 md:w-11/12">
+        <div id="navbar-container" className="relative w-11/12 bg-primary flex justify-between py-8 items-center m-auto
+        sm:w-95 md:w-11/12">
             
             <div id="nav-left" className="">
                 <div id="title-section" className="text-sm flex border-2 border-secondary-1 tracking-wide
@@ -53,12 +53,11 @@ export const Navbar = ({cartNumber}) => {
                 <li className="flex items-center justify-center cursor-pointer relative pr-3 hover:brightness-150 text-secondary-1" onClick={handleCart}>
 
                     <p className="absolute right-0 bottom-0 translate-y-2">{cartNumber}</p>
-
                     <LuShoppingCart className="text-2xl
                     md:text-3xl"></LuShoppingCart>
                 </li>
 
-                <IoMenu className="text-secondary-1 cursor-pointer hover:brightness-150 text-2xl md:hidden"></IoMenu>
+                <IoMenu className="text-secondary-1 cursor-pointer hover:brightness-150 text-2xl md:hidden" onClick={handleSidebar}></IoMenu>
             </NavRight>
            
 

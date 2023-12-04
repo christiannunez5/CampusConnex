@@ -1,7 +1,7 @@
 
 export const BookItem = ({ bookImg, bookName, bookPrice, handleQuickView, addCart}) => {
     return (
-        <div className="bg-secondary-3 cursor-pointer relative mt-7 h-auto" id="book-item">
+        <div className="w-full bg-secondary-3 cursor-pointer relative mt-7 h-auto" id="book-item">
 
             <div className="relative h-full">
                 <img src={bookImg} alt="" className="h-full w-full" />
@@ -10,7 +10,6 @@ export const BookItem = ({ bookImg, bookName, bookPrice, handleQuickView, addCar
                     <p>Quick View</p>
                 </div>
             </div>
-
 
             <div className="w-full bg-secondary-1 text-primary text-center pt-3 h-full flex flex-col gap-3 ">
                
