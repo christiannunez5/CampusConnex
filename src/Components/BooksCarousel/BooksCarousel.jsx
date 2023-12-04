@@ -12,6 +12,7 @@ export const BooksCarousel = ({books, handleQuickView, putTranslate, addCart}) =
         if (width < 700) {
           return true;
         }
+        
         else 
           return false;
     };
