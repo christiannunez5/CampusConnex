@@ -48,8 +48,8 @@ export const BooksCarousel = ({books, handleQuickView, putTranslate, addCart}) =
               customLeftArrow={<LeftArrow></LeftArrow>}
               containerClass='margin'
               infinite={true}
-              // autoPlaySpeed={2500}
-              // autoPlay={true}
+              autoPlaySpeed={2500}
+              autoPlay={true}
               removeArrowOnDeviceType={["mobile"]}>
 
               {books.map((data, index) => {
