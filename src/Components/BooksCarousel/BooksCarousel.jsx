@@ -7,17 +7,15 @@ import {LeftArrow} from '../../Components/Arrows/LeftArrow'
 
 export const BooksCarousel = ({books, handleQuickView, putTranslate, addCart}) => {
 
-
     const deviceType = () => {
         const width = window.innerWidth;
         if (width < 700) {
           return true;
         }
         else 
-        {
           return false;
-        }
     };
+
 
     const isTablet = deviceType();
 
